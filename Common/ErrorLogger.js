@@ -1,6 +1,9 @@
 let logger = require("./Logger");
 
 let ErrorLogger = (err, req, res, next) => {
+  console.error("ERROR URL:", req.originalUrl);
+  console.error("ACTUAL ERROR:", err.stack || err.message);
+
   logger.error({
     method: req.method,
     url: req.originalUrl,
@@ -8,7 +11,10 @@ let ErrorLogger = (err, req, res, next) => {
     date: new Date().toISOString(),
   });
 
-  return res.status(500).send({success: false, message: "Something went wrong"});
+  return res.status(500).send({
+    success: false,
+    message: err.message
+  });
 };
 
 module.exports = ErrorLogger;
