@@ -55,8 +55,8 @@ const HospitalRegister = require("./Common/HospitalRegister");
 const RescheduleAppointment = require("./Patient/RescheduleAppointment");
 const ErrorLogger = require("./Common/ErrorLogger");
 const APILogger = require("./Common/APILogger");
-    // const swaggerUi = require("swagger-ui-express");
-    // const swaggerDocument = require("./swagger.json");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 const CreateIndexes = require("./Common/Indexes");
 
 let app = express();
@@ -72,8 +72,19 @@ app.use(cors({
 
 app.use(express.json());
 app.use(mongoSanitize());
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use(RateLimit);
+app.get("/api-docs", (req, res) => {
+  res.json({
+    message: "Swagger route is working",
+    title: swaggerDocument.info?.title,
+    paths: Object.keys(swaggerDocument.paths || {}).length
+  });
+});
+
+app.use(
+  "/api-docs/ui",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument)
+);app.use(RateLimit);
 app.use(APILogger);
 
 let PORT = 8000;
