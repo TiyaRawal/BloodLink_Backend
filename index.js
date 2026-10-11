@@ -71,8 +71,39 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use(mongoSanitize());
-app.get("/api-docs", (req, res) => {
+app.use((req, res, next) => {
+  const sanitize = (value) => {
+    if (Array.isArray(value)) {
+      return value.map(sanitize);
+    }
+
+    if (value && typeof value === "object") {
+      const clean = {};
+
+      for (const key of Object.keys(value)) {
+        if (key.startsWith("$") || key.includes(".")) {
+          continue;
+        }
+
+        clean[key] = sanitize(value[key]);
+      }
+
+      return clean;
+    }
+
+    return value;
+  };
+
+  if (req.body && typeof req.body === "object") {
+    req.body = sanitize(req.body);
+  }
+
+  if (req.params && typeof req.params === "object") {
+    req.params = sanitize(req.params);
+  }
+
+  next();
+});app.get("/api-docs", (req, res) => {
   res.json({
     message: "Swagger route is working",
     title: swaggerDocument.info?.title,
