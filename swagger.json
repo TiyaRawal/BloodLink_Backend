@@ -1,0 +1,575 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "BloodLink API",
+    "description": "API documentation for BloodLink",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Check server status",
+        "responses": {
+          "200": {
+            "description": "Server is running"
+          }
+        }
+      }
+    },
+    "/api/v1/register": {
+      "post": {
+        "summary": "Register user",
+        "responses": {
+          "201": {
+            "description": "User registered successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/login": {
+      "post": {
+        "summary": "User login",
+        "responses": {
+          "200": {
+            "description": "Login successful"
+          }
+        }
+      }
+    },
+    "/api/v1/logout": {
+      "post": {
+        "summary": "User logout",
+        "responses": {
+          "200": {
+            "description": "Logout successful"
+          }
+        }
+      }
+    },
+    "/api/v1/adminlogin": {
+      "post": {
+        "summary": "Admin login",
+        "responses": {
+          "200": {
+            "description": "Admin login successful"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/bloodstock": {
+      "get": {
+        "summary": "Get blood stock",
+        "responses": {
+          "200": {
+            "description": "Blood stock retrieved successfully"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add blood stock",
+        "responses": {
+          "201": {
+            "description": "Blood stock added successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/bloodstock/{id}": {
+      "put": {
+        "summary": "Update blood stock",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blood stock updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete blood stock",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Blood stock deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/patientrequests": {
+      "get": {
+        "summary": "Get patient requests",
+        "responses": {
+          "200": {
+            "description": "Patient requests retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/donationrequests": {
+      "get": {
+        "summary": "Get donation requests",
+        "responses": {
+          "200": {
+            "description": "Donation requests retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/statistics": {
+      "get": {
+        "summary": "Get admin statistics",
+        "responses": {
+          "200": {
+            "description": "Statistics retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/notification": {
+      "get": {
+        "summary": "Get notifications",
+        "responses": {
+          "200": {
+            "description": "Notifications retrieved successfully"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create notification",
+        "responses": {
+          "201": {
+            "description": "Notification created successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/notification/{id}": {
+      "put": {
+        "summary": "Update notification",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete notification",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/settings": {
+      "get": {
+        "summary": "Get website settings",
+        "responses": {
+          "200": {
+            "description": "Settings retrieved successfully"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update website settings",
+        "responses": {
+          "200": {
+            "description": "Settings updated successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/donor/{id}": {
+      "delete": {
+        "summary": "Delete donor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Donor deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/donor/{id}/approval": {
+      "put": {
+        "summary": "Approve or reject donor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Donor status updated successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/auditlog": {
+      "post": {
+        "summary": "Create audit log",
+        "responses": {
+          "201": {
+            "description": "Audit log created successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/auditlogs": {
+      "get": {
+        "summary": "Get audit logs",
+        "responses": {
+          "200": {
+            "description": "Audit logs retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/patientrequest/{id}": {
+      "put": {
+        "summary": "Edit patient request",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patient request updated successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/notification": {
+      "post": {
+        "summary": "Create notification",
+        "responses": {
+          "201": {
+            "description": "Notification created successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/bloodstock/import": {
+      "post": {
+        "summary": "Import blood stock from CSV",
+        "responses": {
+          "201": {
+            "description": "Blood stock imported successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/donors/export": {
+      "get": {
+        "summary": "Export donor data as CSV",
+        "responses": {
+          "200": {
+            "description": "Donor CSV downloaded successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/register": {
+      "post": {
+        "summary": "Register patient",
+        "responses": {
+          "201": {
+            "description": "Patient registered successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/forgotpassword": {
+      "post": {
+        "summary": "Forgot patient password",
+        "responses": {
+          "200": {
+            "description": "Password reset request processed"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/resetpassword": {
+      "post": {
+        "summary": "Reset patient password",
+        "responses": {
+          "200": {
+            "description": "Password reset successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/bloodrequest": {
+      "post": {
+        "summary": "Create blood request",
+        "responses": {
+          "201": {
+            "description": "Blood request created successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/bloodstock": {
+      "get": {
+        "summary": "Get blood stock for patient",
+        "responses": {
+          "200": {
+            "description": "Blood stock retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/profile": {
+      "put": {
+        "summary": "Update patient profile",
+        "responses": {
+          "200": {
+            "description": "Patient profile updated successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/history": {
+      "get": {
+        "summary": "Get patient history",
+        "responses": {
+          "200": {
+            "description": "Patient history retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/search": {
+      "get": {
+        "summary": "Search patient by blood group",
+        "parameters": [
+          {
+            "name": "bloodGroup",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Patients found"
+          }
+        }
+      }
+    },
+    "/api/v1/patient/appointment/{id}/reschedule": {
+      "put": {
+        "summary": "Reschedule appointment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Appointment rescheduled successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/donor/register": {
+      "post": {
+        "summary": "Register donor",
+        "responses": {
+          "201": {
+            "description": "Donor registered successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/donor/login": {
+      "post": {
+        "summary": "Donor login",
+        "responses": {
+          "200": {
+            "description": "Donor login successful"
+          }
+        }
+      }
+    },
+    "/api/v1/donor/scheduledonation": {
+      "post": {
+        "summary": "Schedule blood donation",
+        "responses": {
+          "201": {
+            "description": "Donation scheduled successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/donor/bloodstock": {
+      "get": {
+        "summary": "Get blood stock for donor",
+        "responses": {
+          "200": {
+            "description": "Blood stock retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/donor/history": {
+      "get": {
+        "summary": "Get donor history",
+        "responses": {
+          "200": {
+            "description": "Donor history retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/donor/scheduledonation/{id}/cancel": {
+      "put": {
+        "summary": "Cancel donation schedule",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Donation schedule cancelled successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/bloodgroups": {
+      "get": {
+        "summary": "Get blood groups",
+        "responses": {
+          "200": {
+            "description": "Blood groups retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/bloodstock/filter": {
+      "get": {
+        "summary": "Filter blood stock by blood group",
+        "parameters": [
+          {
+            "name": "bloodGroup",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filtered blood stock"
+          }
+        }
+      }
+    },
+    "/api/v1/bloodstock/availability": {
+      "get": {
+        "summary": "Search blood availability",
+        "responses": {
+          "200": {
+            "description": "Blood availability retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/hospitalregister": {
+      "post": {
+        "summary": "Register hospital",
+        "responses": {
+          "201": {
+            "description": "Hospital registered successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/profile/upload": {
+      "post": {
+        "summary": "Upload profile image",
+        "responses": {
+          "200": {
+            "description": "Profile image uploaded successfully"
+          }
+        }
+      }
+    }
+  }
+}
