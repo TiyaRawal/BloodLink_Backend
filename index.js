@@ -75,7 +75,6 @@ app.use(mongoSanitize());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(RateLimit);
 app.use(APILogger);
-app.use(ErrorLogger);
 
 let PORT = 8000;
 
@@ -137,6 +136,7 @@ v1.post("/hospitalregister", HospitalRegister);
 v1.post("/profile/upload", AuthMiddleWare(), profileUpload.single("profileImage"), UploadProfileImageAPI);
 
 app.use("/api/v1", v1);
+app.use(ErrorLogger);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
